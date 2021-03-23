@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class MahasiswaSeeder extends Seeder
 {
@@ -14,28 +15,20 @@ class MahasiswaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('mahasiswa')->insert([
-            [
-                'nim' => '1941720070',
-                'nama' => 'I Made Genadi Dharma Slawa',
-                'kelas' => 'TI-2D',
-                'jurusan' => 'Teknologi Informasi',
-                'no_handphone' => '085238831025'
-            ],
-            [
-                'nim' => '1941720051',
-                'nama' => 'Gisanda Aliya',
-                'kelas' => 'TI-2B',
-                'jurusan' => 'Teknologi Informasi',
-                'no_handphone' => '081456743241'
-            ],
-            [
-                'nim' => '1941720121',
-                'nama' => 'Reynaldi Ramadhani',
-                'kelas' => 'TI-2D',
-                'jurusan' => 'Teknologi Informasi',
-                'no_handphone' => '084378652341'
-            ]
-        ]);
+        $faker = Faker::create('id_ID');
+
+        for ($i = 0; $i < 50; $i++) {
+            DB::table('mahasiswa')->insert([
+                [
+                    'nim' => '194172' . $faker->randomNumber(4),
+                    'nama' => $faker->name(),
+                    'kelas' => 'TI-2D',
+                    'jurusan' => 'Teknologi Informasi',
+                    'no_handphone' => '08' . $faker->randomNumber(8),
+                    'email' => $faker->email,
+                    'tanggal_lahir' => $faker->date()
+                ]
+            ]);
+        }
     }
 }
