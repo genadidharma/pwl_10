@@ -41,6 +41,14 @@
                         <label for="No_Handphone">No_Handphone</label>
                         <input type="No_Handphone" name="no_handphone" class="form-control" id="No_Handphone" value="{{ $mahasiswa->no_handphone }}" aria- describedby="No_Handphone">
                     </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" name="email" class="form-control" id="Email" value="{{ $mahasiswa->email }}" aria-describedby="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="Tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" name="tanggal_lahir" class="form-control" id="Tanggal_lahir" value="{{\Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->toDateString()}}" aria-describedby="Tanggal_lahir">
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
