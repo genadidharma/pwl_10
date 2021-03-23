@@ -8,14 +8,14 @@
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><b>Nim: </b>{{$Mahasiswa->nim}}</li>
-                    <li class="list-group-item"><b>Nama: </b>{{$Mahasiswa->nama}}</li>
-                    <li class="list-group-item"><b>Kelas: </b>{{$Mahasiswa->kelas}}</li>
-                    <li class="list-group-item"><b>Jurusan: </b>{{$Mahasiswa->jurusan}}</li>
-                    <li class="list-group-item"><b>No_Handphone: </b>{{$Mahasiswa->no_handphone}}</li>
+                    <li class="list-group-item"><b>Nim: </b>{{$mahasiswa->nim}}</li>
+                    <li class="list-group-item"><b>Nama: </b>{{$mahasiswa->nama}}</li>
+                    <li class="list-group-item"><b>Kelas: </b>{{$mahasiswa->kelas}}</li>
+                    <li class="list-group-item"><b>Jurusan: </b>{{$mahasiswa->jurusan}}</li>
+                    <li class="list-group-item"><b>No Handphone: </b>{{$mahasiswa->no_handphone}}</li>
                 </ul>
             </div>
-            <a class="btn btn-success mt-3" href="{{ route('mahasiswas.index') }}">Kembali</a>
+            <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>
         </div>
     </div>
 </div>
