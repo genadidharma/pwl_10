@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Jurusan">Jurusan</label>
-                        <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $mahasiswa->jurusan }}" aria- describedby="Jurusan">
+                        <input type="Jurusan" name="jurusan" class="form-control" id="Jurusan" value="{{ $mahasiswa->jurusan }}" aria- describedby="Jurusan">
                     </div>
                     <div class="form-group">
                         <label for="No_Handphone">No_Handphone</label>
