@@ -97,7 +97,9 @@ class MahasiswaController extends Controller
             'nama' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
-            'no_handphone' => 'required'
+            'no_handphone' => 'required',
+            'email' => 'required|email',
+            'tanggal_lahir' => 'required|date'
         ]);
 
         //eloquent untuk insert data
