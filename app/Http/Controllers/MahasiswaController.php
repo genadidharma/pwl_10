@@ -62,9 +62,10 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nim)
     {
-        //
+        $mahasiswa = Mahasiswa::find($nim);
+        return view('mahasiswa.detail', compact('mahasiswa'));
     }
 
     /**
