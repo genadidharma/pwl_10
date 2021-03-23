@@ -23,6 +23,8 @@
             <th>Kelas</th>
             <th>Jurusan</th>
             <th>No Handphone</th>
+            <th>Email</th>
+            <th>Tanggal Lahir</th>
             <th width="280px">Action</th>
         </tr>
         @foreach($mahasiswas as $mahasiswa)
@@ -32,6 +34,8 @@
             <td>{{$mahasiswa->kelas}}</td>
             <td>{{$mahasiswa->jurusan}}</td>
             <td>{{$mahasiswa->no_handphone}}</td>
+            <td>{{$mahasiswa->email}}</td>
+            <td>{{isset($mahasiswa->tanggal_lahir) ? \Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->toFormattedDateString() : ''}}</td>
             <td>
                 <form action="{{route('mahasiswa.destroy', $mahasiswa->nim) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('mahasiswa.show', $mahasiswa->nim) }}">Show</a>
