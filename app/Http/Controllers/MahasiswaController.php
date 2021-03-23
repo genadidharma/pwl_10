@@ -62,6 +62,7 @@ class MahasiswaController extends Controller
      */
     public function show($nim)
     {
+        //eloquent untuk mengambil 1 data yang sesuai dalam bentuk objek
         $mahasiswa = Mahasiswa::find($nim);
         return view('mahasiswa.detail', compact('mahasiswa'));
     }
@@ -74,6 +75,7 @@ class MahasiswaController extends Controller
      */
     public function edit($nim)
     {
+        //eloquent untuk mengambil 1 data yang sesuai dalam bentuk objek
         $mahasiswa = Mahasiswa::find($nim);
         return view('mahasiswa.edit', compact('mahasiswa'));
     }
@@ -109,8 +111,12 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nim)
     {
-        //
+        //eloquent untuk menghapus data
+        Mahasiswa::find($nim)->delete();
+
+        //jika berhasil, kembalike halaman utama
+        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil dihapus');
     }
 }
