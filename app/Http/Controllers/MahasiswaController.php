@@ -17,8 +17,8 @@ class MahasiswaController extends Controller
         //Eloquent untuk menampilkan data dengan pagination
         $mahasiswas = Mahasiswa::all();
         $posts = Mahasiswa::orderBy('nim', 'desc')->paginate(6);
-        return view('mahasiswa.index', compact('mahasiswas'));
-        with('i', (request()->input('page', 1) - 1) * 5);
+        return view('mahasiswa.index', compact('mahasiswas'))->
+            with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -39,7 +39,21 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi request
+        $request->validate([
+            'nim' => 'required',
+            'nama' => 'required',
+            'kelas' => 'required',
+            'jurusan' => 'required',
+            'no_handphone' => 'required'
+        ]);
+
+        //eloquent untuk insert data
+        Mahasiswa::create($request->all());
+
+        //jika berhasil, kembalike halaman utama
+        return redirect()->route('mahasiswa.index')->
+            with('success', 'Mahasiswa berhasil ditambahkan');
     }
 
     /**
