@@ -12,5 +12,5 @@ class Mahasiswa extends Model
     protected $primaryKey = 'nim';
     protected $increments = false;
 
-    protected $fillable = ['nim', 'nama', 'kelas', 'jurusan', 'no_handphone'];
+    protected $fillable = ['nim', 'nama', 'kelas', 'jurusan', 'no_handphone', 'email', 'tanggal_lahir'];
 }
