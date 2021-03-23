@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -13,7 +14,11 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        //Eloquent untuk menampilkan data dengan pagination
+        $mahasiswas = Mahasiswa::all();
+        $posts = Mahasiswa::orderBy('nim', 'desc')->paginate(6);
+        return view('mahasiswa.index', compact('mahasiswas'));
+        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
