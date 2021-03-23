@@ -13,6 +13,10 @@
                     <li class="list-group-item"><b>Kelas: </b>{{$mahasiswa->kelas}}</li>
                     <li class="list-group-item"><b>Jurusan: </b>{{$mahasiswa->jurusan}}</li>
                     <li class="list-group-item"><b>No Handphone: </b>{{$mahasiswa->no_handphone}}</li>
+                    <li class="list-group-item"><b>Jurusan: </b>{{$mahasiswa->jurusan}}</li>
+                    <li class="list-group-item"><b>No Handphone: </b>{{$mahasiswa->no_handphone}}</li>
+                    <li class="list-group-item"><b>Email: </b>{{$mahasiswa->email}}</li>
+                    <li class="list-group-item"><b>Tanggal Lahir: </b>{{isset($mahasiswa->tanggal_lahir) ? \Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->toFormattedDateString() : ''}}</li>
                 </ul>
             </div>
             <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>
