@@ -68,8 +68,8 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($nim);
 
         //eloquent untuk mengambil data sebelum dan sesudah data sekarang
-        $prev = Mahasiswa::where('nim', '<', $nim)->orderBy('nim','desc')->first();
-        $next = Mahasiswa::where('nim', '>', $nim)->orderBy('nim')->first();
+        $next = Mahasiswa::where('nim', '<', $nim)->orderBy('nim','desc')->first();
+        $prev = Mahasiswa::where('nim', '>', $nim)->orderBy('nim')->first();
 
         return view('mahasiswa.detail', compact('mahasiswa', 'prev', 'next'));
     }
