@@ -74,12 +74,7 @@ class MahasiswaController extends Controller
     {
         //eloquent untuk mengambil 1 data yang sesuai dalam bentuk objek
         $mahasiswa = Mahasiswa::find($nim);
-
-        //eloquent untuk mengambil data sebelum dan sesudah data sekarang
-        $next = Mahasiswa::where('nim', '<', $nim)->orderBy('nim', 'desc')->first();
-        $prev = Mahasiswa::where('nim', '>', $nim)->orderBy('nim')->first();
-
-        return view('mahasiswa.detail', compact('mahasiswa', 'prev', 'next'));
+        return view('mahasiswa.detail', compact('mahasiswa'));
     }
 
     /**
