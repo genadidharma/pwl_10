@@ -2,11 +2,20 @@
 @section('content')
 <div class="row m-3">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left mt-2">
+        <div class="pull-left mt-2 mb-3">
             <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
         </div>
-        <div class="float-right my-2">
-            <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
+        <form class="float-right form-inline" id="searchForm" method="get" action="{{ route('mahasiswa.index') }}" role="search">
+            <div class="form-group">
+                <input type="text" name="keyword" class="form-control" id="Keyword" aria-describedby="Keyword" placeholder="Keyword" value="{{request()->query('keyword')}}">
+            </div>
+            <button type="submit" class="btn btn-primary mx-2">Cari</button>
+            <a href="{{ route('mahasiswa.index') }}">
+                <button type="button" class="btn btn-danger">Reset</button>
+            </a>
+        </form>
+        <div class="my-2">
+            <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa </a>
         </div>
     </div>
 
@@ -15,7 +24,6 @@
         <p>{{$message}}</p>
     </div>
     @endif
-
     <table class="table table-bordered">
         <tr>
             <th>Nim</th>
@@ -27,7 +35,7 @@
             <th>Tanggal Lahir</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach($paginatedMahasiswas as $mahasiswa)
+        @foreach($mahasiswas as $mahasiswa)
         <tr>
             <td>{{$mahasiswa->nim}}</td>
             <td>{{$mahasiswa->nama}}</td>
@@ -49,6 +57,6 @@
         @endforeach
     </table>
     <div class="d-flex">
-        {{ $paginatedMahasiswas->links('pagination::bootstrap-4') }}
+        {{ $mahasiswas->links('pagination::bootstrap-4') }}
     </div>
 </div>
