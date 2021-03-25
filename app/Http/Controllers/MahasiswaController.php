@@ -16,10 +16,11 @@ class MahasiswaController extends Controller
     {
         //Eloquent untuk menampilkan data mahasiswa, dengan atau tanpa search
         $mahasiswas = Mahasiswa::where([
-            ['nim' , '!=', null, 'OR', 'nama', '!=', null], //ketika form search kosong, maka request akan null. Ambil semua data di database
+            ['nim', '!=', null, 'OR', 'nama', '!=', null], //ketika form search kosong, maka request akan null. Ambil semua data di database
             [function ($query) use ($request) {
                 if (($keyword = $request->keyword)) {
-                    $query->orWhere('nim', 'LIKE', '%' . $keyword . '%', 'OR', 'nama', 'LIKE', '%' . $keyword . '%')->get(); //ketika form search terisi, request tidak null. Ambil data sesuai keyword
+                    $query->orWhere('nim', 'LIKE', '%' . $keyword . '%')
+                        ->orWhere('nama', 'LIKE', '%' . $keyword . '%')->get(); //ketika form search terisi, request tidak null. Ambil data sesuai keyword
                 }
             }]
         ])
