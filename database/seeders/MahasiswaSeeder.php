@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
@@ -26,7 +27,9 @@ class MahasiswaSeeder extends Seeder
                     'jurusan' => 'Teknologi Informasi',
                     'no_handphone' => '08' . $faker->randomNumber(8),
                     'email' => $faker->email,
-                    'tanggal_lahir' => $faker->date()
+                    'tanggal_lahir' => $faker->date(),
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                 ]
             ]);
         }
