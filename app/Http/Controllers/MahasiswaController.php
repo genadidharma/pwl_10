@@ -12,12 +12,20 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //Eloquent untuk menampilkan data dengan pagination
-        $mahasiswas = Mahasiswa::all();
-        $paginatedMahasiswas = Mahasiswa::orderBy('nim', 'desc')->paginate(5);
-        return view('mahasiswa.index', compact('mahasiswas', 'paginatedMahasiswas'))->with('i', (request()->input('page', 1) - 1) * 5);
+        //Eloquent untuk menampilkan data mahasiswa, dengan atau tanpa search
+        $mahasiswas = Mahasiswa::where([
+            ['nim' , '!=', null, 'OR', 'nama', '!=', null], //ketika form search kosong, maka request akan null. Ambil semua data di database
+            [function ($query) use ($request) {
+                if (($keyword = $request->keyword)) {
+                    $query->orWhere('nim', 'LIKE', '%' . $keyword . '%', 'OR', 'nama', 'LIKE', '%' . $keyword . '%')->get(); //ketika form search terisi, request tidak null. Ambil data sesuai keyword
+                }
+            }]
+        ])
+            ->orderBy('nim', 'desc')
+            ->paginate(5);
+        return view('mahasiswa.index', compact('mahasiswas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -68,7 +76,7 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($nim);
 
         //eloquent untuk mengambil data sebelum dan sesudah data sekarang
-        $next = Mahasiswa::where('nim', '<', $nim)->orderBy('nim','desc')->first();
+        $next = Mahasiswa::where('nim', '<', $nim)->orderBy('nim', 'desc')->first();
         $prev = Mahasiswa::where('nim', '>', $nim)->orderBy('nim')->first();
 
         return view('mahasiswa.detail', compact('mahasiswa', 'prev', 'next'));
