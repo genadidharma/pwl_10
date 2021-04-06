@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -26,7 +27,9 @@ class MahasiswaController extends Controller
         ])
             ->orderBy('nim', 'desc')
             ->paginate(5);
-        return view('mahasiswa.index', compact('mahasiswas'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
+        $mahasiswas_relasi = Mahasiswa::with('kelas')->paginate(5);
+        return view('mahasiswa.index', compact('mahasiswas', 'mahasiswas_relasi'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
