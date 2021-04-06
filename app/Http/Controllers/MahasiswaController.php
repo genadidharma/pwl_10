@@ -71,7 +71,7 @@ class MahasiswaController extends Controller
         $mahasiswa->email = $request->get('email');
         $mahasiswa->tanggal_lahir = $request->get('tanggal_lahir');
 
-
+        //Menyimpan id kelas yang merupakan foreign key
         $kelas = new Kelas();
         $kelas->id = $request->get('kelas');
         $mahasiswa->kelas()->associate($kelas);
@@ -104,7 +104,8 @@ class MahasiswaController extends Controller
     {
         //eloquent untuk mengambil 1 data yang sesuai dalam bentuk objek
         $mahasiswa = Mahasiswa::find($nim);
-        return view('mahasiswa.edit', compact('mahasiswa'));
+        $kelases = Kelas::all();
+        return view('mahasiswa.edit', compact('mahasiswa', 'kelases'));
     }
 
     /**
@@ -127,8 +128,20 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required|date'
         ]);
 
-        //eloquent untuk insert data
-        Mahasiswa::find($nim)->update($request->all());
+        //eloquent untuk insert data mahasiswa
+        $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
+        $mahasiswa->nim = $request->get('nim');
+        $mahasiswa->nama = $request->get('nama');
+        $mahasiswa->jurusan = $request->get('jurusan');
+        $mahasiswa->no_handphone = $request->get('no_handphone');
+        $mahasiswa->email = $request->get('email');
+        $mahasiswa->tanggal_lahir = $request->get('tanggal_lahir');
+
+        //Menyimpan id kelas yang merupakan foreign key
+        $kelas = new Kelas();
+        $kelas->id = $request->get('kelas');
+        $mahasiswa->kelas()->associate($kelas);
+        $mahasiswa->save();
 
         //jika berhasil, kembalike halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil diupdate');
