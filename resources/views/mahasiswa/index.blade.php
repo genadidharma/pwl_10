@@ -35,11 +35,11 @@
             <th>Tanggal Lahir</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach($mahasiswas as $mahasiswa)
+        @foreach($mahasiswas_relasi as $mahasiswa)
         <tr>
             <td>{{$mahasiswa->nim}}</td>
             <td>{{$mahasiswa->nama}}</td>
-            <td>{{$mahasiswa->kelas}}</td>
+            <td>{{$mahasiswa->kelas->nama_kelas}}</td>
             <td>{{$mahasiswa->jurusan}}</td>
             <td>{{$mahasiswa->no_handphone}}</td>
             <td>{{$mahasiswa->email}}</td>
@@ -57,6 +57,6 @@
         @endforeach
     </table>
     <div class="d-flex">
-        {{ $mahasiswas->links('pagination::bootstrap-4') }}
+        {{ $mahasiswas_relasi->links('pagination::bootstrap-4') }}
     </div>
 </div>
