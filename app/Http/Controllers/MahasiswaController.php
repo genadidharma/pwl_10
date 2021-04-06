@@ -28,7 +28,9 @@ class MahasiswaController extends Controller
             ->orderBy('nim', 'desc')
             ->paginate(5);
         
-        $mahasiswas_relasi = Mahasiswa::with('kelas')->paginate(5);
+        $mahasiswas_relasi = Mahasiswa::with('kelas')
+            ->orderBy('nim')
+            ->paginate(5);
         return view('mahasiswa.index', compact('mahasiswas', 'mahasiswas_relasi'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -92,6 +94,19 @@ class MahasiswaController extends Controller
         //eloquent untuk mengambil 1 data yang sesuai dalam bentuk objek
         $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
         return view('mahasiswa.detail', compact('mahasiswa'));
+    }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_khs($nim)
+    {
+        $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->where('nim', $nim)->first();
+        // dd($mahasiswa->matakuliah[0]);
+        return view('mahasiswa.khs', compact('mahasiswa'));
     }
 
     /**
