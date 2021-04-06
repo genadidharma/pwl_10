@@ -71,7 +71,7 @@ class MahasiswaController extends Controller
         $mahasiswa->email = $request->get('email');
         $mahasiswa->tanggal_lahir = $request->get('tanggal_lahir');
 
-        
+
         $kelas = new Kelas();
         $kelas->id = $request->get('kelas');
         $mahasiswa->kelas()->associate($kelas);
@@ -90,7 +90,7 @@ class MahasiswaController extends Controller
     public function show($nim)
     {
         //eloquent untuk mengambil 1 data yang sesuai dalam bentuk objek
-        $mahasiswa = Mahasiswa::find($nim);
+        $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
         return view('mahasiswa.detail', compact('mahasiswa'));
     }
 
