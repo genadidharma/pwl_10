@@ -62,8 +62,20 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required|date'
         ]);
 
-        //eloquent untuk insert data
-        Mahasiswa::create($request->all());
+        //eloquent untuk insert data mahasiswa
+        $mahasiswa = new Mahasiswa();
+        $mahasiswa->nim = $request->get('nim');
+        $mahasiswa->nama = $request->get('nama');
+        $mahasiswa->jurusan = $request->get('jurusan');
+        $mahasiswa->no_handphone = $request->get('no_handphone');
+        $mahasiswa->email = $request->get('email');
+        $mahasiswa->tanggal_lahir = $request->get('tanggal_lahir');
+
+        
+        $kelas = new Kelas();
+        $kelas->id = $request->get('kelas');
+        $mahasiswa->kelas()->associate($kelas);
+        $mahasiswa->save();
 
         //jika berhasil, kembalike halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil ditambahkan');
