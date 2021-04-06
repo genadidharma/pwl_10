@@ -39,7 +39,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.create');
+        $kelases = Kelas::all();
+        return view('mahasiswa.create', compact('kelases'));
     }
 
     /**
