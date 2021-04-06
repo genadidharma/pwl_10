@@ -10,7 +10,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>Nim: </b>{{$mahasiswa->nim}}</li>
                     <li class="list-group-item"><b>Nama: </b>{{$mahasiswa->nama}}</li>
-                    <li class="list-group-item"><b>Kelas: </b>{{$mahasiswa->kelas}}</li>
+                    <li class="list-group-item"><b>Kelas: </b>{{$mahasiswa->kelas->nama_kelas}}</li>
                     <li class="list-group-item"><b>Jurusan: </b>{{$mahasiswa->jurusan}}</li>
                     <li class="list-group-item"><b>No Handphone: </b>{{$mahasiswa->no_handphone}}</li>
                     <li class="list-group-item"><b>Jurusan: </b>{{$mahasiswa->jurusan}}</li>
