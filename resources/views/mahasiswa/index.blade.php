@@ -28,6 +28,7 @@
         <tr>
             <th>Nim</th>
             <th>Nama</th>
+            <th>Profil</th>
             <th>Kelas</th>
             <th>Jurusan</th>
             <th>No Handphone</th>
@@ -38,6 +39,11 @@
         @foreach($mahasiswas_relasi as $mahasiswa)
         <tr>
             <td>{{$mahasiswa->nim}}</td>
+            <td>
+                @if(!is_null($mahasiswa->foto_profil))
+                    <img src="{{asset('storage/' . $mahasiswa->foto_profil)}}" width="100px">
+                @endif
+            </td>
             <td>{{$mahasiswa->nama}}</td>
             <td>{{$mahasiswa->kelas->nama_kelas}}</td>
             <td>{{$mahasiswa->jurusan}}</td>
