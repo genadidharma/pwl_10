@@ -22,4 +22,4 @@ Route::get('/', function () {
 Route::resource('/mahasiswa', MahasiswaController::class);
 Route::get('mahasiswa/nilai/{nim}', [MahasiswaController::class, 'show_khs'])->name('mahasiswa.khs');
 
-Route::resource('/articles', ArtikelController::class);
+Route::resource('/artikel', ArtikelController::class);
