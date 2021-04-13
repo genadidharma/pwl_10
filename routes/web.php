@@ -19,8 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/mahasiswa', MahasiswaController::class);
+Route::resource('mahasiswa', MahasiswaController::class);
 Route::get('mahasiswa/nilai/{nim}', [MahasiswaController::class, 'show_khs'])->name('mahasiswa.khs');
+Route::get('mahasiswa/nilai{nim}/cetak_khs', [MahasiswaController::class, 'cetak_khs'])->name('mahasiswa.khs.cetak');
 
-Route::get('/artikel/cetak_pdf', [ArtikelController::class, 'cetak_pdf'])->name('artikel.cetak_pdf');
-Route::resource('/artikel', ArtikelController::class);
+Route::get('artikel/cetak_pdf', [ArtikelController::class, 'cetak_pdf'])->name('artikel.cetak_pdf');
+Route::resource('artikel', ArtikelController::class);
