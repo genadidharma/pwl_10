@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -197,5 +198,11 @@ class MahasiswaController extends Controller
 
         //jika berhasil, kembalike halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil dihapus');
+    }
+
+    public function cetak_khs($nim){
+        $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->where('nim', $nim)->first();
+        $pdf = PDF::loadView('mahasiswa.khs_cetak', compact('mahasiswa'));
+        return $pdf->stream();
     }
 }
