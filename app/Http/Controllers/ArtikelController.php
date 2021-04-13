@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -110,5 +111,11 @@ class ArtikelController extends Controller
     public function destroy(Artikel $artikel)
     {
         //
+    }
+
+    public function cetak_pdf(){
+        $artikel = Artikel::all();
+        $pdf = PDF::loadView('artikel.export_pdf', compact('artikel'));
+        return $pdf->stream();
     }
 }
