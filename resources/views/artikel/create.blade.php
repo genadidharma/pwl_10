@@ -3,7 +3,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-lg-8 mx-auto col-md-10 col-12">
-            <form action="{{route('artikel.store')}}" method="post" enctype="multipart/formdata" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
+            <form action="{{route('artikel.store')}}" method="post" enctype="multipart/form-data" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
                 @csrf
                 <div class="row">
                     <div class="col-12">
